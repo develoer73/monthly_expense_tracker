@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Expense Tracker - Dashboard</title>
+    <link rel="stylesheet" href="home_screen.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Monthly Expense Dashboard</h1>
+            <div class="user-info">
+                <span id="userEmail"></span>
+                <button id="logoutBtn">Logout</button>
+            </div>
+        </header>
+        
+        <div class="summary-cards">
+            <div class="card">
+                <h3>Total Expenses</h3>
+                <p id="totalExpenses">$0.00</p>
+            </div>
+            <div class="card">
+                <h3>Monthly Budget</h3>
+                <p id="monthlyBudget">$0.00</p>
+            </div>
+            <div class="card">
+                <h3>Remaining</h3>
+                <p id="remaining">$0.00</p>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="addExpenseBtn">Add New Expense</button>
+            <button id="viewHistoryBtn">View History</button>
+        </div>
+    </div>
+    <script src="home_screen.js"></script>
+</body>
+</html>
