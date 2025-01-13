@@ -30,6 +30,10 @@ header {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
 }
 
 .card h3 {
@@ -69,4 +73,209 @@ button:hover {
 
 #logoutBtn:hover {
     background: #c0392b;
+}
+
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: 250px;
+    background: #2c3e50;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+}
+
+.sidebar-header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.user-info img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    object-fit: cover;
+}
+
+#sidebar ul li {
+    padding: 10px 0;
+}
+
+#sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+}
+
+#sidebar ul li.active a,
+#sidebar ul li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#content {
+    margin-left: 250px;
+    padding: 30px;
+    width: calc(100% - 250px);
+}
+
+.card-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: #2c3e50;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #34495e;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    #content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Transaction Type Styles */
+.btn-check:checked + .btn-outline-success {
+    background-color: #198754;
+    color: white;
+}
+
+.btn-check:checked + .btn-outline-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.income-form .form-control:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+.expense-form .form-control:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+}
+
+/* Transaction Table Styles */
+.table td {
+    vertical-align: middle;
+}
+
+.text-success {
+    color: #198754 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+/* Category Styles */
+.category-select {
+    padding-left: 2.5rem;
+    background-position: left 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1rem;
+}
+
+.income-category option[data-icon]::before {
+    color: #198754;
+}
+
+.expense-category option[data-icon]::before {
+    color: #dc3545;
+}
+
+.income-category:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+.expense-category:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+.table td i {
+    width: 1.2rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+/* Make table cells more compact */
+.table td, .table th {
+    padding: 0.75rem;
+    white-space: nowrap;
+}
+
+.table td:last-child {
+    width: 1%;
+}
+
+/* Simplified Category Styles */
+#transactionCategory {
+    padding: 8px 12px;
+}
+
+#transactionCategory optgroup {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+#transactionCategory option {
+    padding: 8px;
+    font-weight: normal;
+}
+
+.income-form #transactionCategory:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+}
+
+.expense-form #transactionCategory:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
 }
