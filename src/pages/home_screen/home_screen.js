@@ -1,6 +1,10 @@
 import { auth, db } from '../../firebase/firebase.js';
 import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { collection, addDoc, query, orderBy, onSnapshot, where, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { Sidebar } from '../../components/sidebar/sidebar.js';
+
+// Initialize sidebar
+const sidebar = new Sidebar();
 
 // Define categories constant
 const CATEGORIES = {
@@ -38,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize form
     setupForm();
     listenToTransactions();
+    
+    // Setup logout handler
+    setupLogoutHandler();
 });
 
 // Setup form initialization
@@ -59,16 +66,25 @@ function setupTransactionTypeToggle() {
     });
 }
 
-// Handle logout
-document.getElementById('logoutBtn').addEventListener('click', async () => {
-    try {
-        await signOut(auth);
-        sessionStorage.clear();
-        window.location.href = '../login/login.html';
-    } catch (error) {
-        console.error('Logout error:', error);
+// Handle logout setup
+function setupLogoutHandler() {
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (!logoutBtn) {
+        console.error('Logout button not found');
+        return;
     }
-});
+
+    logoutBtn.addEventListener('click', async () => {
+        try {
+            await signOut(auth);
+            sessionStorage.clear();
+            window.location.href = '../login/login.html';
+        } catch (error) {
+            console.error('Logout error:', error);
+            showAlert('Failed to logout. Please try again.', 'danger');
+        }
+    });
+}
 
 // Enhanced error handling in form submission
 document.getElementById('transactionForm').addEventListener('submit', async (e) => {

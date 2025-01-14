@@ -1,0 +1,272 @@
+/* Base sidebar structure */
+.sidebar {
+    --sidebar-width: 300px;
+    --sidebar-collapsed-width: 90px;
+    --sidebar-gradient-start: rgba(17, 25, 40, 0.95);
+    --sidebar-gradient-end: rgba(30, 45, 70, 0.95);
+    --sidebar-border-color: rgba(255, 255, 255, 0.1);
+    --sidebar-hover-bg: rgba(255, 255, 255, 0.1);
+    --accent-color: #64B5F6;
+    --hover-bg: rgba(255, 255, 255, 0.1);
+    
+    position: fixed;
+    height: 100vh;
+    width: var(--sidebar-width);
+    background: linear-gradient(180deg, 
+                var(--sidebar-gradient-start) 0%, 
+                var(--sidebar-gradient-end) 100%);
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+    width: 250px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar[data-collapsed="true"] {
+    width: var(--sidebar-collapsed-width);
+}
+
+/* Collapsed state */
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+
+/* Header section */
+.sidebar-header {
+    padding: 30px 25px;
+    text-align: center;
+    border-bottom: 1px solid var(--sidebar-border-color);
+    margin: 0;
+    padding: 1.5rem;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* User information section */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--sidebar-border-color);
+}
+
+.user-info img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.75rem;  /* Reduced from 10px for better spacing */
+    border: 2px solid var(--accent-color);
+    padding: 2px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.user-info img:hover {
+    transform: scale(1.05);
+    border-color: #90CAF9;
+}
+
+.user-info span {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Menu structure */
+.sidebar-menu {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* Menu items */
+.menu-item {
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    margin: 5px 15px;
+    border-radius: 12px;
+    border-left: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-item:hover {
+    background: var(--hover-bg);
+    border-left-color: #3498DB;
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item.active {
+    background: var(--accent-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(100, 181, 246, 0.3);
+}
+
+.menu-item i {
+    width: 20px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 1.3rem;
+    min-width: 28px;
+    text-align: center;
+}
+
+.menu-item span {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Toggle button */
+.toggle-btn {
+    position: absolute;
+    right: -16px;
+    top: 15px;
+    background: var(--accent-color);
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    padding: 0;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+}
+
+.toggle-btn:hover {
+    background: var(--sidebar-gradient-end);
+    transform: scale(1.1);
+}
+
+.toggle-btn i {
+    transition: transform 0.3s ease;
+    font-size: 18px;
+}
+
+.sidebar.collapsed .toggle-btn i {
+    transform: rotate(180deg);
+}
+
+.sidebar[data-collapsed="true"] .toggle-btn i {
+    transform: rotate(180deg);
+}
+
+.sidebar[data-collapsed="true"] .title,
+.sidebar[data-collapsed="true"] .user-info span,
+.sidebar[data-collapsed="true"] .menu-text {
+    display: none;
+}
+
+.sidebar[data-collapsed="true"] .menu-item {
+    padding: 15px 0;
+    justify-content: center;
+    margin: 5px auto;
+    width: 85%;
+}
+
+.sidebar[data-collapsed="true"] .menu-item i {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.sidebar[data-collapsed="true"] .user-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.sidebar[data-collapsed="true"] .user-info img {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+}
+
+/* Add tooltip effect for collapsed state */
+.sidebar[data-collapsed="true"] .menu-item:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-left: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1002;
+}
+
+.sidebar[data-collapsed="true"] .user-info {
+    padding: 10px;
+}
+
+.sidebar[data-collapsed="true"] .user-info img {
+    width: 50px;
+    height: 50px;
+    margin: 0;
+}
+
+.sidebar[data-collapsed="true"] .user-info span,
+.sidebar[data-collapsed="true"] .title {
+    display: none;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .toggle-btn {
+        right: -28px; /* Adjust position when sidebar is hidden */
+    }
+    
+    .sidebar.active .toggle-btn {
+        right: -12px;
+    }
+}
+
+/* Add smooth transitions for all interactions */
+.sidebar *, .sidebar *::before, .sidebar *::after {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
